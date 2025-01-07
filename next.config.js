@@ -11,6 +11,10 @@ const nextConfig = {
     });
     return config;
   },
+  eslint: {
+    // 指定要检查的文件
+    dirs: ['pages', 'components', 'lib', 'src']
+  }
 };
 
 module.exports = nextConfig;

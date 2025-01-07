@@ -29,12 +29,15 @@ export async function GET(request: NextRequest) {
     // Generate participant token
     const participantToken = await createParticipantToken(
       {
-        identity: `${participantName}__${randomString(4)}`,
+        identity: `${participantName}`,
         name: participantName,
         metadata,
       },
       roomName,
+      metadata
     );
+
+
 
     // Return connection details
     const data: ConnectionDetails = {
@@ -51,16 +54,27 @@ export async function GET(request: NextRequest) {
   }
 }
 
-function createParticipantToken(userInfo: AccessTokenOptions, roomName: string) {
+function createParticipantToken(userInfo: AccessTokenOptions, roomName: string, metadata: string) {
   const at = new AccessToken(API_KEY, API_SECRET, userInfo);
-  at.ttl = '5m';
-  const grant: VideoGrant = {
-    room: roomName,
-    roomJoin: true,
-    canPublish: true,
-    canPublishData: true,
-    canSubscribe: true,
-  };
+  at.ttl = '1m';
+  let grant: VideoGrant;
+  if(metadata === 'admin'){
+    grant = {
+      room: roomName,
+      roomJoin: true,
+      canPublish: true,
+      canPublishData: true,
+      canSubscribe: true,
+    };
+  }else{
+    grant = {
+      room: roomName,
+      roomJoin: true,
+      canPublish: true,
+      canPublishData: true,
+      canSubscribe: true,
+    };
+  }
   at.addGrant(grant);
   return at.toJwt();
 }

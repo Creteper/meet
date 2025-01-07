@@ -15,9 +15,169 @@
   border-radius: 0;
   padding-bottom: 0.5rem;
   border-bottom: 3px solid;
-  border-color: var(--bg5);
+  border-color: #1a1a1a;
 }
 
 .tabs > .tab[aria-pressed='true'] {
-  border-color: var(--lk-accent-bg);
+  border-color: white;
+}
+
+.lk-settings-menu-modal {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 添加录制相关样式 */
+.recordingContainer {
+  padding: var(--lk-spacing-4);
+  background: var(--lk-bg-secondary);
+  border-radius: var(--lk-border-radius);
+  margin-top: var(--lk-spacing-4);
+  min-width: 300px;
+}
+
+.recordingStatus {
+  display: flex;
+  align-items: center;
+  gap: var(--lk-spacing-2);
+  margin-bottom: var(--lk-spacing-4);
+  color: var(--lk-text-secondary);
+  padding: var(--lk-spacing-2) var(--lk-spacing-4);
+}
+
+.recordingStatus::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--lk-success);
+  animation: pulse 2s infinite;
+}
+
+.recordingStatus[data-recording='true']::before {
+  background-color: var(--lk-danger);
+}
+
+.recordButton {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  min-width: 260px;
+  border: none;
+  border-radius: var(--lk-border-radius);
+  font-weight: bold;
+  font-size: var(--lk-font-size-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.recordButton[data-recording='false'] {
+  background-color: var(--lk-success);
+  color: white;
+}
+
+.recordButton[data-recording='true'] {
+  background-color: var(--lk-danger);
+  color: white;
+}
+
+.recordButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 录制文件列表样式 */
+.recordingFiles {
+  margin-top: 2rem;
+  border-top: 1px solid var(--lk-border-color);
+  padding-top: 1rem;
+}
+
+.recordingFilesTitle {
+  font-size: var(--lk-font-size-sm);
+  font-weight: 600;
+  color: var(--lk-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.loadingFiles {
+  text-align: center;
+  color: var(--lk-text-secondary);
+  padding: 1rem;
+}
+
+.noFiles {
+  text-align: center;
+  color: var(--lk-text-secondary);
+  padding: 1rem;
+}
+
+.filesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--lk-bg);
+  border-radius: var(--lk-border-radius-sm);
+  transition: background-color 0.2s;
+}
+
+.fileItem:hover {
+  background: var(--lk-bg-hover);
+}
+
+.fileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fileName {
+  font-weight: 500;
+  color: var(--lk-text-color);
+}
+
+.fileSize, .fileDate {
+  font-size: var(--lk-font-size-sm);
+  color: var(--lk-text-secondary);
+}
+
+.downloadButton {
+  padding: 0.5rem 1rem;
+  background: var(--lk-primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--lk-border-radius-sm);
+  cursor: pointer;
+  font-size: var(--lk-font-size-sm);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.downloadButton:hover {
+  background: var(--lk-primary-color-dark);
 }

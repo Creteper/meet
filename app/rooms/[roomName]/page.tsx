@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { PageClientImpl } from './PageClientImpl';
 import { isVideoCodec } from '@/lib/types';
-
 export default function Page({
   params,
   searchParams,
@@ -21,6 +20,8 @@ export default function Page({
   const hq = searchParams.hq === 'true' ? true : false;
 
   return (
-    <PageClientImpl roomName={params.roomName} region={searchParams.region} hq={hq} codec={codec} />
+    <div>
+      <PageClientImpl roomName={params.roomName} region={searchParams.region} hq={hq} codec={codec} />
+    </div>
   );
 }

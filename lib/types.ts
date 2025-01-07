@@ -16,13 +16,34 @@ export interface TokenResult {
   accessToken: string;
 }
 
+export interface UserInfo {
+  user: {
+      username: string;
+      email: string;
+      create_at: string;
+      done: number;
+      id: number;
+      token: string;
+  }
+}
+
+export interface LoginRequest {
+  message: string;
+  token: string;
+}
+
+export interface LoginResponse {
+  message: string;
+  token: string;
+}
+
 export function isVideoCodec(codec: string): codec is VideoCodec {
   return videoCodecs.includes(codec as VideoCodec);
 }
 
-export type ConnectionDetails = {
+export interface ConnectionDetails {
   serverUrl: string;
   roomName: string;
-  participantName: string;
   participantToken: string;
-};
+  participantName: string;
+}
